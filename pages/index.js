@@ -15,26 +15,44 @@ function App() {
   const load = async () => {
     await ffmpeg.load();
     setReady(true);
-  }
+  };
 
   useEffect(() => {
     load();
-  }, [])
+  }, []);
 
   const convertToGif = async () => {
-    // Write the file to memory 
-    ffmpeg.FS('writeFile', 'test.mp4', await fetchFile(video));
+    // Write the file to memory
+    ffmpeg.FS("writeFile", "test.webm", await fetchFile(video));
 
     // Run the FFMpeg command
-    await ffmpeg.run('-i', 'test.mp4', '-t', '2.5', '-ss', '2.0', '-f', 'gif', 'out.gif');
+    await ffmpeg.run(
+      // "-i",
+      // "test.webm",
+      // "-t",
+      // "2.5",
+      // "-ss",
+      // "2.0",
+      // "-f",
+      // "mp4",
+      "-i",
+      "test.webm",
+      "-vcodec",
+      "copy",
+      "-qscale",
+      "0",
+      "out.mp4"
+    );
 
     // Read the result
-    const data = ffmpeg.FS('readFile', 'out.gif');
+    const data = ffmpeg.FS("readFile", "out.mp4");
 
     // Create a URL
-    const url = URL.createObjectURL(new Blob([data.buffer], { type: 'image/gif' }));
-    setGif(url)
-  }
+    const url = URL.createObjectURL(
+      new Blob([data.buffer], { type: "video/mp4" })
+    );
+    setGif(url);
+  };
 
   return ready ? (
     <div className={styles.container}>
@@ -48,7 +66,7 @@ function App() {
 
       <button onClick={convertToGif}>Convert</button>
 
-      {gif && <Image src={gif} alt="img" width="250" layout="fill" />}
+      {gif && <video controls width="250" src={gif} />}
     </div>
   ) : (
     <div className={styles.container}>
