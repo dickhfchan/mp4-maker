@@ -26,6 +26,7 @@ function App() {
     ffmpeg.FS("writeFile", "test.webm", await fetchFile(video));
 
     // Run the FFMpeg command
+    // the parameters are referring to https://gist.github.com/AVGP/4c2ce4ab3c67760a0f30a9d54544a060
     await ffmpeg.run(
       // "-i",
       // "test.webm",
