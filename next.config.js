@@ -1,10 +1,25 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+
+module.exports = {
   reactStrictMode: true,
-}
-
-module.exports = nextConfig
-
-
+  headers() {
+    return [
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp'
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin'
+          }
+        ]
+      }
+    ];
+  }
+};
 
 
