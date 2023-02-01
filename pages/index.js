@@ -38,10 +38,11 @@ function App() {
       // "mp4",
       "-i",
       "test.webm",
-      "-vcodec",
+//       "-vcodec",
+      "-c:v"
       "copy",
-      "-q:a",
-      "0",
+//       "-q:a",
+//       "0",
       "out.mp4"
     );
 
