@@ -39,7 +39,7 @@ function App() {
       "-i",
       "test.webm",
 //       "-vcodec",
-      "-c:v"
+      "-c:v",
       "copy",
 //       "-q:a",
 //       "0",
