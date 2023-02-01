@@ -41,7 +41,8 @@ function App() {
 //       "-vcodec",
       "-c:v",
       "copy",
-      "-strict experimental",
+      "-strict",
+      "experimental",
 //       "-q:a",
 //       "0",
       "out.mp4"
