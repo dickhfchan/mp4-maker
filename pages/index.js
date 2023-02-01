@@ -40,7 +40,7 @@ function App() {
       "test.webm",
       "-vcodec",
       "copy",
-      "-qscale",
+      "-q:a",
       "0",
       "out.mp4"
     );
